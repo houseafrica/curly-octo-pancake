@@ -1,0 +1,1 @@
+export { convertRoutesToComponents } from 'utilities/PageParser';
