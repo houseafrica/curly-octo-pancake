@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import styled from '@emotion/styled';
 import Select from 'react-select';
 import { estateProperties } from "components/pages/dummyData/estateList";
+import EachPPtyInEachEstate from "components/reusables/EachPptyInEachEstate";
 
 interface EstateItem {
     id: number,
@@ -74,28 +75,7 @@ const EachEstate: FC = (): ReactElement => {
                     </div>
                     <div className="row">
                         {estateProperties.map((data: EstateItem): ReactElement => 
-                            (<div className="each-property mb-4 col-12" key={data.id}>
-                                <img src={data.imageUrl} alt={data.name} className="property-img" />
-                                <div className="property-contents">
-                                    <div className="d-flex justify-content-between">
-                                        <div>
-                                            <p>{data.name}</p>
-                                            <p className="mb-1">{data.address}</p>
-                                            <p>SQM: {data.dimension}</p>
-                                        </div>
-                                        <button className="d-flex flex-column three-dots" onClick={() => {console.log("button clicked");}}>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </button>
-                                    </div>
-                                    <div className="d-flex justify-content-end">
-                                        <button className="mr-4 validate">Validate</button>
-                                        <button className="allocate">Allocate</button>
-                                    </div>
-                                </div>
-                                
-                            </div>)
+                            (<EachPPtyInEachEstate data={data} />)
                         )}
                     </div>
                 </div>
@@ -235,48 +215,6 @@ const EachEstateWrapper = styled.div`
                 color: #FFAC28;
             }
 
-        }
-        .each-property{
-            display: flex;
-            .property-img{
-                width: 280px;
-                height: 200px;
-                object-fit: cover;
-                border-radius: 40px;
-                background-color: red;
-            }
-            .three-dots{
-                border: none;
-                height: 18px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                span{
-                    width: 4px;
-                    height: 4px;
-                    background-color: #000000;
-                    border-radius: 50%;
-                }
-            }
-            .property-contents{
-                padding: 20px 30px 10px 30px;
-                width: 100%;
-            }
-            div{
-                .validate, .allocate{
-                    border: none;
-                    padding: 10px 28px; 
-                    color: #FFFFFF;
-                    border-radius: 16px;
-                }
-
-                .validate{
-                    background-color: #3AD29F;
-                }
-                .allocate{
-                    background-color: #41085B;
-                }
-            }
         }
     }
     .sidebar{
