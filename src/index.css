@@ -11,3 +11,11 @@
 body{
   overflow-x: hidden;
 }
+
+.overflow-x-auto{
+  overflow-x: auto;
+}
+
+.propvat-purple{
+  color: #41085B;
+}

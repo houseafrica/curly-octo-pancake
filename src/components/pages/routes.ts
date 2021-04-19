@@ -1,10 +1,39 @@
-import { DEV_DASHBOARD_HOME } from './pagesPaths';
+import {
+    DEV_DASHBOARD, 
+    DEV_DASHBOARD_HOME,
+    DEV_DASHBOARD_PROPERTIES,
+    DEV_DASHBOARD_INDIV_ESTATES,
+    DEV_DASHBOARD_ENQUIRIES 
+} from './pagesPaths';
 import withSuspense from 'components/HOC/withSuspense';
 
 export const generalRoutes = [
     {
+        path:  DEV_DASHBOARD,
+        component: withSuspense({ page: "authPages/estateDevelopers/Index" })
+    }
+]
+
+//estate developers' screens
+export const estateDevRoutes = [
+    {
         path:  DEV_DASHBOARD_HOME,
         component: withSuspense({ page: "authPages/estateDevelopers/Home" }),
-        exact: true,
+        exact: true
+    },
+    {
+        path:  DEV_DASHBOARD_PROPERTIES,
+        component: withSuspense({ page: "authPages/estateDevelopers/Properties" }),
+        exact: true
+    },
+    {
+        path:  DEV_DASHBOARD_INDIV_ESTATES,
+        component: withSuspense({ page: "authPages/estateDevelopers/EachEstate" }),
+        exact: true
+    },
+    {
+        path:  DEV_DASHBOARD_ENQUIRIES,
+        component: withSuspense({ page: "authPages/estateDevelopers/Enquiries" }),
+        exact: true
     }
 ]
