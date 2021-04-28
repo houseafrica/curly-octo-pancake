@@ -14,3 +14,4 @@ export const DEV_DASHBOARD_HOME = "/estate-developers";
 export const DEV_DASHBOARD_PROPERTIES = "/estate-developers/properties";
 export const DEV_DASHBOARD_INDIV_ESTATES = "/estate-developers/properties/estates/:id";
 export const DEV_DASHBOARD_ENQUIRIES = "/estate-developers/enquiries";
+export const DEV_DASHBOARD_DUPLICATE_INQUIRIES = "/estate-developers/duplicate-inquiries";

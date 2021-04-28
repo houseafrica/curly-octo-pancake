@@ -1,6 +1,5 @@
 import React, { FC, ReactElement, useState } from 'react';
 import styled from '@emotion/styled';
-import Select from 'react-select';
 import { Link } from "react-router-dom";
 import estateList from "components/pages/dummyData/estateList";
 
@@ -46,7 +45,10 @@ const Properties: FC = (): ReactElement => {
                                 <img src={data.imageUrl} alt={data.name} className="estate-img" />
                                 <div className="d-flex px-4">
                                     <p className="mr-3 font-14">{data.address}</p>
-                                    <Link to={`/estate-developers/properties/estates/${data.id}`}>View</Link>
+                                    <Link to={`/estate-developers/properties/estates/${data.id}`}>
+                                        <span>View </span>
+                                        <span className="forward-arrow">&#8594;</span>
+                                    </Link>
                                 </div>
                             </div>)
                         )}
@@ -139,6 +141,17 @@ const PropertiesScreenWrapper = styled.div`
             object-fit: cover;
             border-radius: 40px;
             background-color: red;
+
+            & + div{
+                a{
+                    white-space: nowrap;
+    
+                    .forward-arrow{
+                        font-size: 20px;
+                    }
+                }
+            }
+            
         }
     }
     .sidebar{

@@ -1,15 +1,15 @@
 import React, { FC, ReactElement, useState } from 'react';
 import styled from '@emotion/styled';
 
-interface EstateItem {
-    id: number,
-    imageUrl: string,
-    name: string,
-    address: string,
-    dimension: string
-}
+// interface EstateItem {
+//     id: number,
+//     imageUrl: string,
+//     name: string,
+//     address: string,
+//     dimension: string
+// }
 
-const EachPptyInEachEstate: FC<any> = ({ data }): ReactElement => {
+const EachPptyInEachEstate: FC<any> = ({ data, setAllocate, setValidate, setEdit }): ReactElement => {
 
     const [toggleMore, setToggleMore] = useState(false);
     return (
@@ -31,13 +31,13 @@ const EachPptyInEachEstate: FC<any> = ({ data }): ReactElement => {
                 </div>
                 {toggleMore && (
                     <div className="position-absolute dropdown">
-                        <a href='#' className="d-block">Edit</a>
-                        <a href='#' className="d-block">Property Info</a>
+                        <button className="d-block" onClick={() => {setEdit(true)}}>Edit</button>
+                        <button className="d-block">Property Info</button>
                     </div>
                 )}
                 <div className="d-flex justify-content-end">
-                    <button className="mr-4 validate">Validate</button>
-                    <button className="allocate">Allocate</button>
+                    <button className="mr-4 validate" onClick={() => setValidate(true)}>Validate</button>
+                    <button className="allocate" onClick={() => setAllocate(true)}>Allocate</button>
                 </div>
             </div>
             
@@ -48,6 +48,7 @@ const EachPptyInEachEstate: FC<any> = ({ data }): ReactElement => {
 
 const EachPptyInEachEstateWrapper = styled.div`
     display: flex;
+    overflow-x: auto;
     .property-img{
         width: 280px;
         height: 200px;
@@ -82,8 +83,10 @@ const EachPptyInEachEstateWrapper = styled.div`
             padding: 15px;
             border-radius: 15px;
 
-            a{
+            button{
+                border: none;
                 color: #FFFFFF;
+                background: none;
             }
         }
     }

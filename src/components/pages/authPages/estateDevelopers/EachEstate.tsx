@@ -1,8 +1,14 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import styled from '@emotion/styled';
 import Select from 'react-select';
 import { estateProperties } from "components/pages/dummyData/estateList";
-import EachPPtyInEachEstate from "components/reusables/EachPptyInEachEstate";
+import EachPPtyInEachEstate from "components/reusables/estateDevelopers/EachPptyInEachEstate";
+import AllocatePropertyModal from "components/reusables/estateDevelopers/AllocatePropertyModal";
+import ValidatePropertyModal from "components/reusables/estateDevelopers/ValidatePropertyModal";
+import EditPropertyModal from "components/reusables/estateDevelopers/EditPropertyModal";
+
+
+
 
 interface EstateItem {
     id: number,
@@ -39,9 +45,18 @@ const countryStyles = {
 };
 
 const EachEstate: FC = (): ReactElement => {
+
+    const [allocate, setAllocate] = useState(false);
+    const [validate, setValidate] = useState(false);
+    const [edit, setEdit] = useState(false);
+
+
     return (
         <EachEstateWrapper>
             {/* <Link to="/estate-developers/properties/estates/123456" className="d-block text-center">Go to an estate </Link> */}
+            { allocate && <AllocatePropertyModal setAllocate={setAllocate} />}
+            { validate && <ValidatePropertyModal setValidate={setValidate} />}
+            { edit && <EditPropertyModal setEdit={setEdit} />}
             <div className="row">
                 <form className='col-xl-4 col-lg-5 col-md-6 col-12'>
                     <input type="text" name="ppty-search" id="ppty-search" className="w-100" placeholder="Search for property" />
@@ -75,7 +90,13 @@ const EachEstate: FC = (): ReactElement => {
                     </div>
                     <div className="row">
                         {estateProperties.map((data: EstateItem): ReactElement => 
-                            (<EachPPtyInEachEstate data={data} />)
+                            (<EachPPtyInEachEstate 
+                                data={data} 
+                                setAllocate={setAllocate} 
+                                setValidate={setValidate} 
+                                key={data.id} 
+                                setEdit={setEdit} 
+                            />)
                         )}
                     </div>
                 </div>
@@ -109,6 +130,20 @@ const EachEstate: FC = (): ReactElement => {
                                 <div className="col-xl-6 mb-2 col-lg-12">
                                     <input type="checkbox" name="detached" id="detached" className="mr-3" />
                                     <label htmlFor="detached" className="mb-0">Detached roof</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mb-5">
+                            <h6>Price</h6>
+                            <div className="row">
+                                <div className="col-12">
+                                    {/* <InputRange 
+                                        minValue={5}
+                                        maxValue={100}
+                                        value={rangeValue}
+                                        draggableTrack={true} 
+                                        onChange={(value) => setRangeValue(value)}
+                                    /> */}
                                 </div>
                             </div>
                         </div>
@@ -162,7 +197,7 @@ const EachEstate: FC = (): ReactElement => {
 }
 
 const EachEstateWrapper = styled.div`
-    margin-left: 150px;
+    margin-left: 150px; 
     padding-top: 30px;
     
     .grey-9c{
@@ -177,6 +212,74 @@ const EachEstateWrapper = styled.div`
         font-weight: 600;
     }
 
+    .new-estate-dialog{
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #00000029;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10;
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: center;
+        overflow-y: auto;
+
+        
+        .content{
+            margin-bottom: 150px;
+            margin-top: 150px;
+            width: 450px;
+            height: 300px;
+            background-color: #ffffff;
+            border-radius: 30px;
+            flex-shrink: 0;
+            padding: 30px 50px;
+
+            .close{
+                all: unset;
+                width: 30px;
+                text-align: end;
+            }
+
+            form{
+                input{
+                    border: none;
+                    height: 64px;
+                    border-radius: 20px;
+                    background-color: #c5c5c5;
+                    padding: 15px;
+                    margin-bottom: 30px;
+                }
+                button{
+                    display: block;
+                    width: 80px;
+                    height: 40px;
+                    background-color: #41085B;
+                    color: #FFFFFF;
+                    border: none;
+                    border-radius: 15px;
+                    margin-left: auto;
+                    
+                }
+            }
+
+            @media all and (max-width: 375px){
+                padding: 30px;
+            }
+        }
+        
+        @media all and (max-width: 520px){
+            padding-left: 15px;
+            padding-right: 15px;
+            
+            .content{
+                width: 100%;
+            }
+        }
+    }
+    
+
     form{
         input[name="ppty-search"]{
             background: #f5f5fb;
@@ -190,7 +293,7 @@ const EachEstateWrapper = styled.div`
 
     .main{
         height: 93vh;
-        overflow-Y: auto;
+        overflow-y: auto;
         padding-right: 40px;
 
         .banner{
@@ -219,8 +322,8 @@ const EachEstateWrapper = styled.div`
     }
     .sidebar{
         height: 93vh;
-        overflow-Y: auto;
-        overflow-X: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
 
         .subtitle{
             opacity: 0.45;

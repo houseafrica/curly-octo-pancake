@@ -23,7 +23,7 @@ const DesktopNav: FC<any> = (): ReactElement => {
                 <NavLink to="/estate-developers/properties" activeClassName="selected">
                     <MapIcon />
                 </NavLink>
-                <NavLink to="/estate-developers/terms-of-use" activeClassName="selected">
+                <NavLink to="/estate-developers/duplicate-inquiries" activeClassName="selected">
                     <MapIcon />
                 </NavLink>
                 <NavLink to="/estate-developers/enquiries" activeClassName="selected">

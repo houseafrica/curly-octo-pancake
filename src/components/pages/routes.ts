@@ -3,7 +3,8 @@ import {
     DEV_DASHBOARD_HOME,
     DEV_DASHBOARD_PROPERTIES,
     DEV_DASHBOARD_INDIV_ESTATES,
-    DEV_DASHBOARD_ENQUIRIES 
+    DEV_DASHBOARD_ENQUIRIES,
+    DEV_DASHBOARD_DUPLICATE_INQUIRIES
 } from './pagesPaths';
 import withSuspense from 'components/HOC/withSuspense';
 
@@ -35,5 +36,11 @@ export const estateDevRoutes = [
         path:  DEV_DASHBOARD_ENQUIRIES,
         component: withSuspense({ page: "authPages/estateDevelopers/Enquiries" }),
         exact: true
+    },
+    {
+        path:  DEV_DASHBOARD_DUPLICATE_INQUIRIES,
+        component: withSuspense({ page: "authPages/estateDevelopers/DuplicateInquiries" }),
+        exact: true
     }
+    
 ]
